@@ -21,10 +21,12 @@ SOURCES += \
 HEADERS += \
     car.h \
     mainwindow.h \
+    qbasesqlmodel.h \
     qcarlistsqlinterface.h \
     qcarsqlmodel.h \
     qcatlistmodel.h \
-    sqlmodel.h
+    sqlmodel.h \
+    tables.h
 
 FORMS += \
     mainwindow.ui

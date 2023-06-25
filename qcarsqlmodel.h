@@ -1,13 +1,20 @@
 #pragma once
 
+//#include "tables.h"
+
 #include "car.h"
-#include "sqlmodel.h"
+#include "qbasesqlmodel.h"
 
 #include <memory>
 #include <thread>
 #include <QtSql/QSqlQuery>
 
-class QCarSqlModel
+extern const char CarTableName[] = "cars";
+extern const char CarFieldModel[] = "model";
+extern const char CarFieldPrice[] = "price";
+extern const char CarFieldBrand[] = "brand";
+
+class QCarSqlModel : public QBaseSqlModel<Car, CarTableName, CarFieldModel, CarFieldPrice, CarFieldBrand>
 {
 public:
     QCarSqlModel();
@@ -28,7 +35,7 @@ public:
     void update(int id, const QString &value, const QString &field);
     void updateIf(const QString &condition, const QString &field, const QString &value);
 
-    Car parsingRowToCar(const QSqlQuery &query);
+    Car parsingRowToCar(const QSqlQuery &query) override;
     QSqlQuery execQuery(const QString &queryStr);
 
     inline static const QString brandColumn = "brand";
